@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boodle King | Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #4d5b3a; /* Earthy Green from your design */
+            --light-bg: #e8ede9;      /* Light Green background */
+            --accent-brown: #8b5a47;  /* Terracotta/Brown accent */
+            --white: #ffffff;
+            --text-dark: #2d3436;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        
+        nav {
+            background-color: var(--primary-green);
+            padding: 15px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .logo h1 { color: var(--white); font-size: 1.5rem; }
+        .logo p { color: #cbd5e0; font-size: 0.7rem; letter-spacing: 1px; }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover { color: #d4e09b; }
+
+        .login-btn {
+            background-color: #6a7c50;
+            padding: 8px 18px;
+            border-radius: 4px;
+        }
+
+        
+        header {
+            height: 80vh;
+            background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), 
+                        url('https://images.unsplash.com/photo-1555126634-323283e090fa?q=80&w=1600') center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            color: var(--primary-green);
+            margin-bottom: 10px;
+        }
+
+        .hero-tagline {
+            font-size: 1.2rem;
+            color: #444;
+            margin-bottom: 30px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: transform 0.2s, opacity 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:active { transform: scale(0.95); }
+
+        .btn-view { background-color: var(--accent-brown); color: white; }
+        .btn-book { background-color: var(--primary-green); color: white; }
+
+       
+        .features-container {
+            width: 85%;
+            margin: -50px auto 60px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-card {
+            background-color: var(--light-bg);
+            padding: 35px 20px;
+            text-align: center;
+            border-radius: 12px;
+            transition: 0.3s;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .feature-card:hover { transform: translateY(-5px); }
+
+        .feature-card h3 {
+            color: var(--primary-green);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .feature-card p {
+            font-size: 0.85rem;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        
+        .description-sec {
+            text-align: center;
+            padding: 40px 10% 80px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .description-sec h2 {
+            color: var(--primary-green);
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .description-sec p {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+		
+		
+       
+        footer {
+            background-color: var(--primary-green);
+            color: white;
+            padding: 50px 10% 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+        .footer-col h3, .footer-col h4 { margin-bottom: 20px; color: var(--hover-green); }
+        .social-links a { color: white; font-size: 1.5rem; margin-right: 20px; transition: var(--transition); }
+        .social-links a:hover { color: var(--hover-green); }
+
+       
+        @media (max-width: 768px) {
+            nav { flex-direction: column; padding: 1rem; }
+            .nav-links { margin-top: 15px; flex-wrap: wrap; justify-content: center; }
+            .nav-links li { margin: 5px 10px; }
+            .contact-container { grid-template-columns: 1fr; }
+            .hero-text h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">
+            <h1>Boodle King</h1>
+            <p>FAMILY & FRIENDS DINING</p>
+        </div>
+        <ul class="nav-links">
+            <li><a href="dashboard.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="about.html">About</a></li>
+            
+            <li><a href="order.html">Order</a></li>
+            <li><a href="index.html" class="login-btn">Login</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1 class="hero-title">Welcome to Boodle King</h1>
+        <p class="hero-tagline">Experience the authentic Filipino boodle fight tradition</p>
+        
+        <div class="hero-btns">
+            <a href="menu.html" class="btn btn-view">View Menu</a>
+            <a href="contact.html" class="btn btn-book">Book a Table</a>
+        </div>
+    </header>
+
+    <div class="features-container">
+        <div class="feature-card">
+            <h3>Family Friendly</h3>
+            <p>Perfect for family gatherings and celebrations.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Made with Love</h3>
+            <p>Traditional recipes passed down through generations.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Authentic Cuisine</h3>
+            <p>Fresh ingredients and authentic Filipino flavors.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Top Rated</h3>
+            <p>Loved by families across the country.</p>
+        </div>
+    </div>
+
+    <section class="description-sec">
+        <h2>What is Boodle Fight?</h2>
+        <p>
+            Boodle fight is a Filipino military style of eating where food is served on banana leaves laid out 
+            on a long table. Everyone eats together using their hands, creating a fun, communal dining 
+            experience that brings people closer together. It's not just a meal—it's a celebration of Filipino 
+            culture, hospitality, and the joy of sharing food with loved ones.
+        </p>
+    </section>
+
+     <footer>
+        <div class="footer-col">
+            <h3>Boodle King</h3>
+            <p>Experience authentic Filipino hospitality.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Contact Us</h4>
+            <p>info@boodleking.ph</p>
+            <p>+63 912 345 6789</p>
+        </div>
+        <div class="footer-col">
+            <h4>Follow Us</h4>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+         
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            
+            document.getElementById(pageId).classList.add('active');
+            
+        
+            window.scrollTo(0,0);
+        }
+
+        function handleBooking(event) {
+            event.preventDefault();
+            alert('Thank you for your reservation request! We will contact you shortly to confirm.');
+            event.target.reset();
+        }
+    </script>
+
+</body>
+</html>
