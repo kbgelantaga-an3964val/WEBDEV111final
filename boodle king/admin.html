@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>admin</title>
+    <style>
+        :root {
+            --olive-dark: #3a412d;
+            --olive-light: #4b533a;
+            --gold: #ffd700;
+            --bg-gray: #f4f7f6;
+            --text-main: #2d3436;
+            --white: #ffffff;
+            --shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-gray);
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+       
+        header {
+            background-color: var(--olive-dark);
+            color: var(--white);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+        }
+
+        .brand h1 { margin: 0; font-size: 1.4rem; letter-spacing: 1px; }
+        .brand span { font-size: 0.7rem; text-transform: uppercase; color: var(--gold); }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            transition: 0.3s;
+        }
+        .nav-links a:hover { opacity: 1; color: var(--gold); }
+
+       
+        .container {
+            padding: 40px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        h2 { margin-bottom: 30px; font-weight: 600; color: var(--olive-dark); }
+
+       
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--olive-light);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover { transform: translateY(-5px); }
+
+        .stat-label {
+            display: block;
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--olive-dark);
+        }
+
+        .stat-value.gold { color: #b8860b; }
+
+       
+        .table-container {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        h3 { margin-top: 0; margin-bottom: 20px; color: var(--olive-dark); }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            padding: 15px;
+            font-size: 0.9rem;
+            color: #636e72;
+            border-bottom: 2px solid #edf2f4;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #edf2f4;
+            font-size: 0.95rem;
+        }
+
+     
+        .status {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        .status.pending { background: #fff3cd; color: #856404; }
+        .status.preparing { background: #d1ecf1; color: #0c5460; }
+        .status.delivered { background: #d4edda; color: #155724; }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand">
+            <h1>Boodle King</h1>
+            <span>Admin Mode</span>
+        </div>
+        <div class="nav-links">
+            
+            <a href="riders.html">Riders</a>
+            <a href="index.html" style="color: var(--gold);">Logout</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2>Store Overview</h2>
+
+       
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-label">Daily Sales</span>
+                <span class="stat-value gold">₱24,500.00</span>
+            </div>
+            <div class="stat-card" style="border-left-color: #e67e22;">
+                <span class="stat-label">Pending Orders</span>
+                <span class="stat-value">12</span>
+            </div>
+            <div class="stat-card" style="border-left-color: #3498db;">
+                <span class="stat-label">Active Raiders</span>
+                <span class="stat-value">8</span>
+            </div>
+        </div>
+
+        
+        <div class="table-container">
+            <h3>Recent Transactions</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Customer</th>
+                        <th>Status</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#BK-9921</td>
+                        <td>Juan Dela Cruz</td>
+                        <td><span class="status preparing">Preparing</span></td>
+                        <td>₱1,250.00</td>
+                    </tr>
+                    <tr>
+                        <td>#BK-9920</td>
+                        <td>Maria Clara</td>
+                        <td><span class="status pending">Pending</span></td>
+                        <td>₱850.00</td>
+                    </tr>
+                    <tr>
+                        <td>#BK-9919</td>
+                        <td>Crisostomo I.</td>
+                        <td><span class="status delivered">Delivered</span></td>
+                        <td>₱3,400.00</td>
+                    </tr>
+                    <tr>
+                        <td>#BK-9918</td>
+                        <td>Padre Salvi</td>
+                        <td><span class="status delivered">Delivered</span></td>
+                        <td>₱520.00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>

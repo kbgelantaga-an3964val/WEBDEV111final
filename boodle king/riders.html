@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rider management</title>
+    <style>
+        :root {
+            --olive-dark: #3a412d;
+            --olive-main: #4b533a;
+            --gold: #ffd700;
+            --white: #ffffff;
+            --bg-gray: #f0f2f0;
+            --success: #27ae60;
+            --danger: #e74c3c;
+            --shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg-gray);
+            color: #333;
+        }
+
+  
+        header {
+            background-color: var(--olive-dark);
+            color: var(--white);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 0.9rem;
+        }
+
+   
+        .container {
+            padding: 40px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .rider-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .rider-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+            position: relative;
+            transition: transform 0.3s;
+            border-top: 5px solid var(--olive-main);
+        }
+
+        .rider-card:hover { transform: translateY(-5px); }
+
+        .rider-info h3 { margin: 10px 0 5px 0; color: var(--olive-dark); }
+        .rider-info p { margin: 0; color: #777; font-size: 0.9rem; }
+
+        .status-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .status-available { background: #d4edda; color: var(--success); }
+        .status-busy { background: #f8d7da; color: var(--danger); }
+
+       
+        .card-actions {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.85rem;
+            transition: 0.3s;
+        }
+
+        .btn-call {
+            background-color: var(--olive-main);
+            color: white;
+        }
+
+        .btn-call:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .btn-call:hover:not(:disabled) { background-color: var(--olive-dark); }
+
+        .btn-toggle {
+            background-color: transparent;
+            border: 1px solid #ddd;
+        }
+
+       
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--olive-dark);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            display: none;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <h2 style="margin:0;">Boodle King</h2>
+            <small style="color:var(--gold)">Rider Dispatch</small>
+        </div>
+        <nav class="nav-links">
+          
+            <a href="riders.html" style="font-weight:bold; color:var(--gold);">Riders</a>
+            <a href="admin.html"  style="font-weight:bold; color:var(--gold);">Back</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="header-flex">
+            <h2>Available Raiders</h2>
+            <div style="color: #666;">Active Session: <span id="clock">00:00:00</span></div>
+        </div>
+
+        <div class="rider-grid">
+          
+            <div class="rider-card" id="rider-1">
+                <div class="status-badge status-available" id="badge-1">Available</div>
+                <div class="rider-info">
+                    <h3>Ricardo Dalisay</h3>
+                    <p>ID: #R-1001</p>
+                    <p>Vehicle: Honda Click (White)</p>
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-call" onclick="callRider('Ricardo Dalisay', 1)">Call to Grab</button>
+                    <button class="btn btn-toggle" onclick="toggleStatus(1)">Set Busy</button>
+                </div>
+            </div>
+
+      
+            <div class="rider-card" id="rider-2">
+                <div class="status-badge status-busy" id="badge-2">Busy</div>
+                <div class="rider-info">
+                    <h3>Narda Custodio</h3>
+                    <p>ID: #R-1042</p>
+                    <p>Vehicle: Yamaha Mio (Blue)</p>
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-call" id="call-2" disabled onclick="callRider('Narda Custodio', 2)">Call to Grab</button>
+                    <button class="btn btn-toggle" onclick="toggleStatus(2)">Set Available</button>
+                </div>
+            </div>
+
+         
+            <div class="rider-card" id="rider-3">
+                <div class="status-badge status-available" id="badge-3">Available</div>
+                <div class="rider-info">
+                    <h3>Totoy Bato</h3>
+                    <p>ID: #R-1055</p>
+                    <p>Vehicle: E-Bike (Black)</p>
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-call" onclick="callRider('Totoy Bato', 3)">Call to Grab</button>
+                    <button class="btn btn-toggle" onclick="toggleStatus(3)">Set Busy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="notification" id="notif">Dispatching order to Rider...</div>
+
+    <script>
+       
+        function toggleStatus(id) {
+            const badge = document.getElementById(`badge-${id}`);
+            const callBtn = document.querySelector(`#rider-${id} .btn-call`);
+            const toggleBtn = document.querySelector(`#rider-${id} .btn-toggle`);
+
+            if (badge.classList.contains('status-available')) {
+                badge.classList.remove('status-available');
+                badge.classList.add('status-busy');
+                badge.innerText = 'Busy';
+                callBtn.disabled = true;
+                toggleBtn.innerText = 'Set Available';
+            } else {
+                badge.classList.remove('status-busy');
+                badge.classList.add('status-available');
+                badge.innerText = 'Available';
+                callBtn.disabled = false;
+                toggleBtn.innerText = 'Set Busy';
+            }
+        }
+
+   
+        function callRider(name, id) {
+            const notif = document.getElementById('notif');
+            notif.innerText = `Calling ${name}... Order assigned!`;
+            notif.style.display = 'block';
+            
+        
+            setTimeout(() => {
+                notif.style.display = 'none';
+                toggleStatus(id);
+            }, 3000);
+        }
+
+    
+        setInterval(() => {
+            const now = new Date();
+            document.getElementById('clock').innerText = now.toLocaleTimeString();
+        }, 1000);
+    </script>
+</body>
+</html>

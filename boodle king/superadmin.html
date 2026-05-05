@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>super admin</title>
+    <style>
+        :root {
+            --olive-dark: #3a412d;
+            --olive-main: #4b533a;
+            --accent-gold: #ffd700;
+            --neon-purple: #bc13fe;
+            --bg-deep: #0f0a1a;
+            --glass: rgba(255, 255, 255, 0.05);
+            --text-white: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-white);
+            overflow-x: hidden;
+        }
+
+      
+        header {
+            background-color: var(--olive-dark);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .logo-box h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            color: var(--accent-gold);
+        }
+
+        .exit-btn {
+            text-decoration: none;
+            color: white;
+            border: 1px solid var(--neon-purple);
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            transition: 0.3s;
+        }
+
+        .exit-btn:hover { background: var(--neon-purple); }
+
+      
+        .container {
+            padding: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        
+        .card {
+            background: var(--glass);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .card-label {
+            color: #888;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 10px 0;
+            display: block;
+        }
+
+        .gold-text { color: var(--accent-gold); }
+        .purple-text { color: var(--neon-purple); }
+        .green-text { color: #4caf50; }
+
+       
+        .load-bar-bg {
+            height: 8px;
+            background: #333;
+            border-radius: 4px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        .load-bar-fill {
+            height: 100%;
+            background: var(--neon-purple);
+            width: 0%;
+            transition: width 1s ease-in-out;
+        }
+
+    
+        .main-dash {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+
+        .log-terminal {
+            background: #000;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            height: 300px;
+            overflow-y: auto;
+            border: 1px solid #222;
+        }
+
+        .log-entry { margin-bottom: 8px; color: #aaa; }
+        .log-entry span { color: var(--neon-purple); }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-box">
+            <h2>SUPERADMIN MODE</h2>
+        </div>
+        <a href="index.html" class="exit-btn">SYSTEM EXIT</a>
+    </header>
+
+    <div class="container">
+   
+        <div class="stats-grid">
+            <div class="card">
+                <span class="card-label">Daily Revenue</span>
+                <span class="card-value gold-text">$<span id="rev-val">0</span></span>
+                <small style="color: #4caf50;">↑ 12% from yesterday</small>
+            </div>
+            <div class="card">
+                <span class="card-label">Active Orders</span>
+                <span class="card-value" id="order-val">0</span>
+                <small>Processing in kitchen</small>
+            </div>
+            <div class="card">
+                <span class="card-label">Global Traffic</span>
+                <span class="card-value purple-text" id="user-val">0</span>
+                <small>Users currently online</small>
+            </div>
+        </div>
+
+        <div class="main-dash">
+        
+            <div class="card">
+                <h3 style="margin-top:0;">Infrastructure Status</h3>
+                
+                <div style="margin-top: 20px;">
+                    <div style="display:flex; justify-content:space-between;">
+                        <span>Server Load</span>
+                        <span id="load-text">0%</span>
+                    </div>
+                    <div class="load-bar-bg">
+                        <div class="load-bar-fill" id="load-fill"></div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px; display: flex; gap: 40px;">
+                    <div>
+                        <span class="card-label">Database</span>
+                        <p class="green-text" style="font-weight:bold;">CONNECTED</p>
+                    </div>
+                    <div>
+                        <span class="card-label">Latency</span>
+                        <p>24ms</p>
+                    </div>
+                    <div>
+                        <span class="card-label">Uptime</span>
+                        <p>99.98%</p>
+                    </div>
+                </div>
+            </div>
+
+           
+            <div class="card">
+                <h3 style="margin-top:0;">Security Logs</h3>
+                <div class="log-terminal" id="log-box">
+                    <div class="log-entry"><span>[09:00:01]</span> System Kernel Initialized...</div>
+                    <div class="log-entry"><span>[09:00:05]</span> Firewall rules applied.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+       
+        function animateValue(id, start, end, duration) {
+            let obj = document.getElementById(id);
+            let range = end - start;
+            let minTimer = 50;
+            let stepTime = Math.abs(Math.floor(duration / range));
+            stepTime = Math.max(stepTime, minTimer);
+            let startTime = new Date().getTime();
+            let endTime = startTime + duration;
+            let timer;
+
+            function run() {
+                let now = new Date().getTime();
+                let remaining = Math.max((endTime - now) / duration, 0);
+                let value = Math.round(end - (remaining * range));
+                obj.innerHTML = value.toLocaleString();
+                if (value == end) clearInterval(timer);
+            }
+            timer = setInterval(run, stepTime);
+            run();
+        }
+
+     
+        animateValue("rev-val", 0, 12840, 2000);
+        animateValue("order-val", 0, 42, 1500);
+        animateValue("user-val", 0, 1402, 2500);
+
+      
+        setInterval(() => {
+            let load = Math.floor(Math.random() * (25 - 10 + 1)) + 10;
+            document.getElementById('load-fill').style.width = load + "%";
+            document.getElementById('load-text').innerText = load + "%";
+        }, 3000);
+
+     
+        const logBox = document.getElementById('log-box');
+        const messages = ["New order from Manila", "Admin 'Chef_B' logged in", "Cache purged", "Backup successful"];
+        
+        setInterval(() => {
+            let time = new Date().toLocaleTimeString();
+            let msg = messages[Math.floor(Math.random() * messages.length)];
+            let div = document.createElement('div');
+            div.className = 'log-entry';
+            div.innerHTML = `<span>[${time}]</span> ${msg}`;
+            logBox.prepend(div);
+        }, 5000);
+    </script>
+</body>
+</html>
